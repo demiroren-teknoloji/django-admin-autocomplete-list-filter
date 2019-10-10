@@ -1,0 +1,9 @@
+{% load i18n staticfiles %}
+<h3>{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</h3>
+
+<form method="get">
+<ul>
+    <li>{{ spec.autocomplete_form.autocomplete_field }}</li>
+</ul>
+{{ spec.autocomplete_form.querystring_value }}
+</form>
