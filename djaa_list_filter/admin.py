@@ -1,8 +1,12 @@
-# pylint: disable=R0903,R0913
+# pylint: disable=R0903,R0913,R0201
 
 from django import forms
 from django.contrib import admin
 from django.contrib.admin.widgets import AutocompleteSelect
+from django.db.models.fields.related_descriptors import (
+    ManyToManyDescriptor,
+    ReverseManyToOneDescriptor,
+)
 from django.utils.translation import ugettext_lazy as _
 
 # from django.core.exceptions import ImproperlyConfigured
@@ -14,8 +18,8 @@ class AjaxAutocompleteSelectWidget(AutocompleteSelect):
         self.model_admin = kwargs.pop('model_admin')
         self.model = kwargs.pop('model')
         self.field_name = kwargs.pop('field_name')
-        kwargs['admin_site'] = self.model_admin.admin_site
-        kwargs['rel'] = getattr(self.model, self.field_name).field.remote_field
+        kwargs.update(admin_site=self.model_admin.admin_site)
+        kwargs.update(rel=getattr(self.model, self.field_name).field.remote_field)
         super().__init__(*args, **kwargs)
 
     def render(self, name, value, attrs=None, renderer=None):
@@ -36,7 +40,7 @@ class AjaxAutocompleteListFilter(admin.RelatedFieldListFilter):
         super().__init__(field, request, params, model, model_admin, field_path)
 
         qs_target_value = self.parameter_name % (field.name, model._meta.pk.name)
-        queryset = getattr(model, field.name).get_queryset()
+        queryset = self.get_queryset_for_field(model, field.name)
         widget = AjaxAutocompleteSelectWidget(
             model_admin=model_admin, model=model, field_name=field.name, qs_target_value=qs_target_value
         )
@@ -50,6 +54,21 @@ class AjaxAutocompleteListFilter(admin.RelatedFieldListFilter):
         if autocomplete_field_initial_value:
             initial_values.update(autocomplete_field=autocomplete_field_initial_value)
         self.autocomplete_form = AutocompleteForm(initial=initial_values)
+
+    def get_queryset_for_field(self, model, name):
+        """
+        Thanks to farhan0581
+        https://github.com/farhan0581/django-admin-autocomplete-filter/blob/master/admin_auto_filters/filters.py
+        """
+
+        field_desc = getattr(model, name)
+        if isinstance(field_desc, ManyToManyDescriptor):
+            related_model = field_desc.rel.related_model if field_desc.reverse else field_desc.rel.model
+        elif isinstance(field_desc, ReverseManyToOneDescriptor):
+            related_model = field_desc.rel.related_model
+        else:
+            return field_desc.get_queryset()
+        return related_model.objects.get_queryset()
 
 
 class AjaxAutocompleteListFilterModelAdmin(admin.ModelAdmin):

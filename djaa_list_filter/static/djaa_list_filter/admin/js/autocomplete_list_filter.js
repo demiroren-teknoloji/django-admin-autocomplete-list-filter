@@ -1,9 +1,11 @@
 function handle_querystring_and_redirect(querystring_value, qs_target_value, selection) {
     var required_queryset = [];
-    for(const field_eq_value of querystring_value.split("&")){
-        var [field, value] = field_eq_value.split("=");
-        if (field != qs_target_value){
-            required_queryset.push(field_eq_value)
+    if (querystring_value.length > 0) {
+        for(const field_eq_value of querystring_value.split("&")){
+            var [field, value] = field_eq_value.split("=");
+            if (field != qs_target_value){
+                required_queryset.push(field_eq_value)
+            }
         }
     }
     if (selection.length > 0) {
