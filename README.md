@@ -10,7 +10,7 @@ autocomplete widget! No extra package or install required!
 
 | Before | After |
 |:-------|:------|
-| ![Before django-admin-autocomplete-list-filter](screenshots/before.png "Before...") | ![After django-admin-autocomplete-list-filter](screenshots/after.png "After...") |
+| [![Before django-admin-autocomplete-list-filter](screenshots/before.png "Before...")](screenshots/before.png) | [![After django-admin-autocomplete-list-filter](screenshots/after.png "After...")](screenshots/after.png) |
 
 
 ## Installation and Usage
