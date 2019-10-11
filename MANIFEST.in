@@ -1,0 +1,2 @@
+recursive-include djaa_list_filter/static *
+recursive-include djaa_list_filter/templates *
