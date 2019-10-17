@@ -24,10 +24,10 @@ class AjaxAutocompleteSelectWidget(AutocompleteSelect):
 
     def render(self, name, value, attrs=None, renderer=None):
         rendered = super().render(name, value, attrs, renderer)
-        return (
-            f'<div class="ajax-autocomplete-select-widget-wrapper" data-qs-target-value="{self.qs_target_value}">'
-            f'{rendered}'
-            '</div>'
+        return ("""
+            <div class="ajax-autocomplete-select-widget-wrapper" data-qs-target-value="{qs_target_value}">
+                {rendered}
+            </div>""".format(qs_target_value=self.qs_target_value, rendered=rendered)
         )
 
 
