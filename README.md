@@ -1,5 +1,8 @@
-![Python](https://img.shields.io/badge/python-3.7.3-green.svg)
-![Django](https://img.shields.io/badge/django-2.2.6-green.svg)
+![Python](https://img.shields.io/badge/python-3.5-green.svg)
+![Python](https://img.shields.io/badge/python-3.6-green.svg)
+![Python](https://img.shields.io/badge/python-3.7-green.svg)
+![Django](https://img.shields.io/badge/django-2.1-green.svg)
+![Django](https://img.shields.io/badge/django-2.2-green.svg)
 ![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
 [![PyPI version](https://badge.fury.io/py/django-admin-autocomplete-list-filter.svg)](https://badge.fury.io/py/django-admin-autocomplete-list-filter)
 
@@ -8,10 +11,7 @@
 Ajax autocomplete list filter helper for Django admin. Uses Django’s built-in
 autocomplete widget! No extra package or install required!
 
-| Before | After |
-|:-------|:------|
-| [![Before django-admin-autocomplete-list-filter](https://github.com/demiroren-teknoloji/django-admin-autocomplete-list-filter/raw/development/screenshots/before.png "Before...")](https://github.com/demiroren-teknoloji/django-admin-autocomplete-list-filter/raw/development/screenshots/before.png) | [![After django-admin-autocomplete-list-filter](https://github.com/demiroren-teknoloji/django-admin-autocomplete-list-filter/raw/development/screenshots/after.png "After...")](https://github.com/demiroren-teknoloji/django-admin-autocomplete-list-filter/raw/development/screenshots/after.png) |
-
+![After](screenshots/demo.gif?v=2 "Widget in action...")
 
 ## Installation and Usage
 
