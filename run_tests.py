@@ -15,5 +15,6 @@ if __name__ == '__main__':
 
     TestRunner = get_runner(settings)
     test_runner = TestRunner()
+    test_runner.verbosity = 2
     failures = test_runner.run_tests(['tests'])
     sys.exit(bool(failures))
