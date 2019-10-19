@@ -151,6 +151,7 @@ All PR’s are welcome!
 
 **2019-10-19**
 
+- Bump version: 0.1.2
 - Add Python 3.5 supports, thanks to [Peter Farrel](https://github.com/maestrofjp)
 - Add animated gif :)
 - Add future warning for f-strings

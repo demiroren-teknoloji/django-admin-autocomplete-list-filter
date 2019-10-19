@@ -14,7 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 
 CURRENT_PYTHON = sys.version_info[:2]
 REQUIRED_PYTHON_FOR_FSTRING = (3, 6)
-USE_FSTRING = CURRENT_PYTHON > REQUIRED_PYTHON_FOR_FSTRING
+USE_FSTRING = CURRENT_PYTHON >= REQUIRED_PYTHON_FOR_FSTRING
 
 
 class WillRemoveInVersion10(FutureWarning):
