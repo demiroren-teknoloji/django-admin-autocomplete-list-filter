@@ -9,7 +9,7 @@ with open(os.path.join(CURRENT_WORKING_DIRECTORY, 'README.md')) as fp:
 
 setup(
     name='django-admin-autocomplete-list-filter',
-    version='0.1.0',
+    version='0.1.1',
     description='Ajax autocomplete list filter for Django admin',
     long_description=README,
     long_description_content_type='text/markdown',
