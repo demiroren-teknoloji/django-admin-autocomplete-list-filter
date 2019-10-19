@@ -149,6 +149,12 @@ All PR’s are welcome!
 
 ## Change Log
 
+**2019-10-19**
+
+- Add Python 3.5 supports, thanks to [Peter Farrel](https://github.com/maestrofjp)
+- Add animated gif :)
+- Add future warning for f-strings
+
 **2019-10-11**
 
 - Add ManyToManyField support
