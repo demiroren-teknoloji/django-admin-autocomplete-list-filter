@@ -1,5 +1,8 @@
 # pylint: disable=R0903,R0913,R0201
 
+import sys
+import warnings
+
 from django import forms
 from django.contrib import admin
 from django.contrib.admin.widgets import AutocompleteSelect
@@ -9,7 +12,13 @@ from django.db.models.fields.related_descriptors import (
 )
 from django.utils.translation import ugettext_lazy as _
 
-# from django.core.exceptions import ImproperlyConfigured
+CURRENT_PYTHON = sys.version_info[:2]
+REQUIRED_PYTHON_FOR_FSTRING = (3, 6)
+USE_FSTRING = CURRENT_PYTHON > REQUIRED_PYTHON_FOR_FSTRING
+
+
+class WillRemoveInVersion10(FutureWarning):
+    pass
 
 
 class AjaxAutocompleteSelectWidget(AutocompleteSelect):
@@ -24,11 +33,21 @@ class AjaxAutocompleteSelectWidget(AutocompleteSelect):
 
     def render(self, name, value, attrs=None, renderer=None):
         rendered = super().render(name, value, attrs, renderer)
-        return (
-            f'<div class="ajax-autocomplete-select-widget-wrapper" data-qs-target-value="{self.qs_target_value}">'
-            f'{rendered}'
-            '</div>'
-        )
+
+        if USE_FSTRING:
+            html_string = (
+                f'<div class="ajax-autocomplete-select-widget-wrapper" data-qs-target-value="{self.qs_target_value}">'
+                f'{rendered}'
+                '</div>'
+            )
+        else:
+            warnings.warn('Will remove str.format, will use f-strings only', WillRemoveInVersion10)
+            html_string = (
+                '<div class="ajax-autocomplete-select-widget-wrapper" data-qs-target-value="{qs_target_value}">'
+                '{rendered}'
+                '</div>'
+            ).format(qs_target_value=self.qs_target_value, rendered=rendered)
+        return html_string
 
 
 class AjaxAutocompleteListFilter(admin.RelatedFieldListFilter):
