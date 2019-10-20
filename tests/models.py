@@ -1,13 +1,11 @@
-from django.contrib.auth.models import User
 from django.db import models
 
 __all__ = ['Post', 'Category', 'Tag']
 
 
 class Post(models.Model):
-    category = models.ForeignKey(to='Category', on_delete=models.CASCADE, related_name='posts')
-    author = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='posts')
     title = models.CharField(max_length=255)
+    category = models.ForeignKey(to='Category', on_delete=models.CASCADE, related_name='posts')
     tags = models.ManyToManyField(to='Tag', blank=True)
 
     def __str__(self):
