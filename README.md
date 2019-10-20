@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/demiroren-teknoloji/django-admin-autocomplete-list-filter.svg?branch=add-tests)](https://travis-ci.org/demiroren-teknoloji/django-admin-autocomplete-list-filter)
 ![Python](https://img.shields.io/badge/python-3.5-green.svg)
 ![Python](https://img.shields.io/badge/python-3.6-green.svg)
 ![Python](https://img.shields.io/badge/python-3.7-green.svg)
