@@ -34,19 +34,13 @@ class AjaxAutocompleteSelectWidget(AutocompleteSelect):
     def render(self, name, value, attrs=None, renderer=None):
         rendered = super().render(name, value, attrs, renderer)
 
-        if USE_FSTRING:
-            html_string = (
-                f'<div class="ajax-autocomplete-select-widget-wrapper" data-qs-target-value="{self.qs_target_value}">'
-                f'{rendered}'
-                '</div>'
-            )
-        else:
+        if not USE_FSTRING:
             warnings.warn('Will remove str.format, will use f-strings only', WillRemoveInVersion10)
-            html_string = (
-                '<div class="ajax-autocomplete-select-widget-wrapper" data-qs-target-value="{qs_target_value}">'
-                '{rendered}'
-                '</div>'
-            ).format(qs_target_value=self.qs_target_value, rendered=rendered)
+        html_string = (
+            '<div class="ajax-autocomplete-select-widget-wrapper" data-qs-target-value="{qs_target_value}">'
+            '{rendered}'
+            '</div>'
+        ).format(qs_target_value=self.qs_target_value, rendered=rendered)
         return html_string
 
 

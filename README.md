@@ -149,6 +149,10 @@ All PR’s are welcome!
 
 ## Change Log
 
+**2019-10-25**
+
+- Remove f-string for older Python versions, will change this on 1.0.0 version
+
 **2019-10-19**
 
 - Bump version: 0.1.2
